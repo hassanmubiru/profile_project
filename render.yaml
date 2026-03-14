@@ -3,15 +3,15 @@ services:
     name: profile-project
     env: python
     plan: free
-    buildCommand: |
-      pip install -r requirements.txt
-      python manage.py collectstatic --noinput
-      python manage.py migrate
-    startCommand: gunicorn profile_project.wsgi:application --bind 0.0.0.0:$PORT
+    runtime: python-3.11
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+    startCommand: gunicorn profile_project.wsgi:application
     envVars:
       - key: DEBUG
         value: false
       - key: ALLOWED_HOSTS
-        value: "*.onrender.com,localhost,127.0.0.1"
+        value: "*.onrender.com"
       - key: SECRET_KEY
         generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.11
