@@ -8,6 +8,25 @@ from django.contrib.auth.models import User
 from .models import Profile
 
 
+def home_view(request):
+    """
+    Public home page showing all profiles
+    No login required - accessible to everyone
+    """
+    # Get all profiles from database
+    all_profiles = Profile.objects.all()
+    
+    # Count total profiles
+    total_profiles = all_profiles.count()
+    
+    context = {
+        "profiles": all_profiles,
+        "total_profiles": total_profiles,
+    }
+    
+    return render(request, 'home.html', context)
+
+
 @login_required(login_url='admin:login')
 def profile_view(request):
     """

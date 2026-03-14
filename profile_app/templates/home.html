@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Profile Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .btn {
+            padding: 12px 25px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        .btn-admin {
+            background-color: white;
+            color: #667eea;
+            border: 2px solid white;
+        }
+        .btn-admin:hover {
+            background-color: transparent;
+            color: white;
+        }
+        .btn-profiles {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+        .btn-profiles:hover {
+            background-color: white;
+            color: #667eea;
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .profile-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .profile-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .profile-info {
+            font-size: 0.95em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        .profile-topics {
+            background: rgba(255,255,255,0.2);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+        .no-profiles {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+        }
+        .stats {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #ddd;
+            color: #666;
+        }
+        .stats-number {
+            font-size: 2em;
+            color: #667eea;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Django Profile Project</h1>
+            <p class="subtitle">Learning Variables & Loops with Django</p>
+        </header>
+
+        <div class="nav-buttons">
+            <a href="/admin/" class="btn btn-admin">Admin Dashboard</a>
+            <a href="/profiles/" class="btn btn-profiles">View All Profiles</a>
+        </div>
+
+        <div class="content">
+            {% if profiles %}
+                <h2>📋 User Profiles</h2>
+                <div class="profiles-grid">
+                    {% for profile in profiles %}
+                        <div class="profile-card">
+                            <div class="profile-name">{{ profile.user.username }}</div>
+                            <div class="profile-info">
+                                <strong>Age:</strong> {{ profile.age }}<br>
+                                <strong>Bio:</strong> {{ profile.bio }}
+                            </div>
+                            <div class="profile-topics">
+                                <strong>Topics:</strong><br>
+                                {{ profile.topics }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="no-profiles">
+                    <h3>No profiles yet</h3>
+                    <p>Create profiles in the <a href="/admin/" style="color: #667eea; text-decoration: underline;">Admin Dashboard</a></p>
+                </div>
+            {% endif %}
+
+            <div class="stats">
+                <p><span class="stats-number">{{ total_profiles }}</span> Profile(s) in Database</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
