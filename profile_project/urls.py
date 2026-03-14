@@ -4,8 +4,12 @@ Maps URLs to views and includes app URLs.
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 urlpatterns = [
+    # Homepage redirect to profile page
+    path('', RedirectView.as_view(url='/profile/', permanent=False)),
+    
     # Admin interface
     # Access at: http://localhost:8000/admin/
     path('admin/', admin.site.urls),
