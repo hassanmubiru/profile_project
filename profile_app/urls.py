@@ -8,8 +8,9 @@ from . import views
 # URL patterns for the app
 urlpatterns = [
     # Home page - public, no login required
-    # Access at: http://localhost:8000/
+    # Access at: http://localhost:8000/ or /welcome
     path('', views.home_view, name='home'),
+    path('welcome/', views.home_view, name='welcome'),
     
     # Profile view - requires login
     # Access at: http://localhost:8000/profile/
