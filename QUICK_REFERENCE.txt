@@ -1,0 +1,165 @@
+#!/bin/bash
+
+# Quick reference - Print after setup for next steps
+
+cat << 'EOF'
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║              DJANGO PROFILE PROJECT - QUICK REFERENCE                        ║
+║                  Python Basics Learning Dashboard                          ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+
+>>> ACTIVATE VIRTUAL ENVIRONMENT <<<
+
+On Linux/Mac:
+  source venv/bin/activate
+
+On Windows:
+  venv\Scripts\activate
+
+
+>>> START DEVELOPMENT SERVER <<<
+
+Run this command:
+  python manage.py runserver
+
+You'll see:
+  Starting development server at http://127.0.0.1:8000/
+
+Keep this terminal window open while working!
+
+
+>>> ACCESS THE APPLICATION <<<
+
+Admin Panel: http://localhost:8000/admin/
+  • Login with your superuser account
+  • Create/edit user profiles here
+
+Profile Page: http://localhost:8000/profile/
+  • View your profile and today's topics
+  • Must be logged in (redirects to /admin/login)
+
+
+>>> LEARNING FOCUS <<<
+
+📌 VARIABLES - where defined:
+   Location: profile_app/views.py (lines 30-55)
+   Concepts:
+   • today_topics = ["variables", "loops", "functions"]
+   • user_data = {"username": ..., "email": ...}
+   • total_topics = len(today_topics)
+
+📌 LOOPS - Python for loop:
+   Location: profile_app/views.py (lines 57-68)
+   Concepts:
+   • for index, topic in enumerate(today_topics, start=1):
+   • Iterates through list items one at a time
+   • enumerate() provides both position and value
+
+📌 LOOPS - Django template loop:
+   Location: profile_app/templates/profile.html (line 127)
+   Concepts:
+   • {% for topic in today_topics %}
+   • {{ forloop.counter }} - current position
+   • {{ topic }} - current item
+
+
+>>> COMMON COMMANDS <<<
+
+Run migrations after model changes:
+  python manage.py migrate
+
+Create new superuser:
+  python manage.py createsuperuser
+
+Open interactive Python shell:
+  python manage.py shell
+
+View all profiles in database:
+  python manage.py dbshell
+
+Stop the server:
+  Press Ctrl+C
+
+
+>>> TROUBLESHOOTING <<<
+
+❌ "Module not found" error?
+   → Activate virtual environment: source venv/bin/activate
+   → Install dependencies: pip install -r requirements.txt
+
+❌ "Table doesn't exist" error?
+   → Run migrations: python manage.py migrate
+
+❌ Can't login to admin?
+   → Create superuser: python manage.py createsuperuser
+
+❌ /profile page shows login page?
+   → Login via /admin/ first
+   → Then visit /profile/
+
+
+>>> PROJECT FILE STRUCTURE <<<
+
+profile_app/models.py
+  ├─ Profile model (database schema)
+  └─ SHOWS: Variables, data types, JSONField
+
+profile_app/views.py
+  ├─ profile_view() - Profile display view
+  └─ SHOWS: Variables, for loops, @login_required decorator
+
+profile_app/urls.py
+  └─ URL routing configuration
+
+profile_app/templates/profile.html
+  ├─ HTML template with CSS styling
+  ├─ Django template {% for %} loops
+  └─ SHOWS: Loop syntax, template variables
+
+profile_project/settings.py
+  └─ Django configuration
+
+profile_project/urls.py
+  └─ Main project URL routing
+
+
+>>> EDIT PROFILE DATA <<<
+
+Method 1: Django Admin Panel
+  1. Visit http://localhost:8000/admin/
+  2. Click "Profiles"
+  3. Click on a profile to edit
+  4. Modify: age, bio, topics (as JSON list)
+  5. Click "Save"
+
+Method 2: Django Shell
+  python manage.py shell
+  
+  from profile_app.models import Profile
+  from django.contrib.auth.models import User
+  
+  user = User.objects.first()
+  profile = Profile.objects.get(user=user)
+  profile.age = 25
+  profile.bio = "Learning Django"
+  profile.topics = ["variables", "loops", "functions"]
+  profile.save()
+
+
+>>> USEFUL LINKS <<<
+
+Django Docs:        https://docs.djangoproject.com/
+Python Loops:       https://docs.python.org/3/tutorial/controlflow.html#for-statements
+Python Variables:   https://docs.python.org/3/tutorial/introduction.html
+Model Fields:       https://docs.djangoproject.com/en/stable/ref/models/fields/
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+                          Happy Learning! 🚀
+
+═══════════════════════════════════════════════════════════════════════════════
+
+EOF

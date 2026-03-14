@@ -1,0 +1,316 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;User Profile&lt;/title&gt;
+    &lt;style&gt;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .profile-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+        
+        .profile-section h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .profile-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .profile-label {
+            font-weight: 600;
+            color: #555;
+            min-width: 120px;
+        }
+        
+        .profile-value {
+            color: #333;
+            flex: 1;
+            text-align: right;
+        }
+        
+        .topics-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+        
+        /* LOOP DEMONSTRATION: Styling for looped elements */
+        .topic-item {
+            background: white;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .topic-item:hover {
+            background: #f0f0f0;
+            transform: translateX(5px);
+        }
+        
+        .topic-number {
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .topic-name {
+            flex: 1;
+            margin-left: 15px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin: 10px 0;
+            overflow-x: auto;
+            border-left: 4px solid #00ff00;
+        }
+        
+        .learning-section {
+            background: #fffef0;
+            border-left-color: #ffc107;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .comment {
+            color: #888;
+            font-style: italic;
+            font-size: 13px;
+            margin: 5px 0;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;👤 User Profile&lt;/h1&gt;
+        &lt;p class="subtitle"&gt;Python Basics Learning Dashboard&lt;/p&gt;
+        
+        &lt;!-- ========== USER INFORMATION SECTION ========== --&gt;
+        &lt;div class="profile-section"&gt;
+            &lt;h2&gt;&lt;span class="section-icon"&gt;👤&lt;/span&gt;Account Information&lt;/h2&gt;
+            &lt;p class="comment"&gt;&lt;!-- VARIABLES EXAMPLE: Displaying data stored in variables --&gt;&lt;/p&gt;
+            
+            &lt;div class="profile-item"&gt;
+                &lt;span class="profile-label"&gt;Username:&lt;/span&gt;
+                &lt;span class="profile-value"&gt;{{ user_data.username }}&lt;/span&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="profile-item"&gt;
+                &lt;span class="profile-label"&gt;Email:&lt;/span&gt;
+                &lt;span class="profile-value"&gt;{{ user_data.email }}&lt;/span&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="profile-item"&gt;
+                &lt;span class="profile-label"&gt;First Name:&lt;/span&gt;
+                &lt;span class="profile-value"&gt;{{ user_data.first_name }}&lt;/span&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="profile-item"&gt;
+                &lt;span class="profile-label"&gt;Last Name:&lt;/span&gt;
+                &lt;span class="profile-value"&gt;{{ user_data.last_name }}&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- ========== PROFILE DETAILS SECTION ========== --&gt;
+        &lt;div class="profile-section"&gt;
+            &lt;h2&gt;&lt;span class="section-icon"&gt;📝&lt;/span&gt;Profile Details&lt;/h2&gt;
+            
+            &lt;div class="profile-item"&gt;
+                &lt;span class="profile-label"&gt;Age:&lt;/span&gt;
+                &lt;span class="profile-value"&gt;{{ profile.age }} years old&lt;/span&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="profile-item"&gt;
+                &lt;span class="profile-label"&gt;Bio:&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div style="background: white; padding: 10px; border-radius: 5px; margin: 10px 0;"&gt;
+                {{ profile.bio|default:"No bio added yet. Visit admin to add one!" }}&lt;br&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- ========== TODAY'S LEARNING TOPICS - LOOP DEMONSTRATION ========== --&gt;
+        &lt;div class="profile-section learning-section"&gt;
+            &lt;h2&gt;&lt;span class="section-icon"&gt;🎓&lt;/span&gt;Today's Topics (LOOP EXAMPLE)&lt;/h2&gt;
+            &lt;p class="comment"&gt;&lt;!-- LOOP EXAMPLE: Django template {% for %} loop iterates through the list --&gt;&lt;/p&gt;
+            
+            &lt;!-- LOOP SYNTAX IN DJANGO TEMPLATES: {% for item in list %} ... {% endfor %} --&gt;
+            &lt;ul class="topics-list"&gt;
+                {% for topic in today_topics %}
+                    &lt;!-- 
+                    LOOP ITERATION: This block repeats for each item in today_topics list
+                    Variables available in loop:
+                    - forloop.counter: Current iteration (1, 2, 3...)
+                    - topic: Current item value ("variables", "loops", "functions")
+                    - forloop.first / forloop.last: First/last iteration checks
+                    --&gt;
+                    &lt;li class="topic-item"&gt;
+                        &lt;span class="topic-number"&gt;{{ forloop.counter }}&lt;/span&gt;
+                        &lt;span class="topic-name"&gt;{{ topic|upper }}&lt;/span&gt;
+                    &lt;/li&gt;
+                {% endfor %}
+            &lt;/ul&gt;
+            
+            &lt;div class="profile-item" style="margin-top: 15px;"&gt;
+                &lt;span class="profile-label"&gt;Total Topics:&lt;/span&gt;
+                &lt;span class="profile-value"&gt;{{ total_topics }}&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- ========== CODE EXAMPLES SECTION ========== --&gt;
+        &lt;div class="profile-section learning-section"&gt;
+            &lt;h2&gt;&lt;span class="section-icon"&gt;💻&lt;/span&gt;Python Code Examples&lt;/h2&gt;
+            
+            &lt;h3 style="color: #333; margin: 15px 0 10px 0; font-size: 14px;"&gt;1. VARIABLE Example (from views.py):&lt;/h3&gt;
+            &lt;div class="code-block"&gt;
+# VARIABLE: List of today's topics&lt;br&gt;
+today_topics = ["variables", "loops", "functions"]&lt;br&gt;
+&lt;br&gt;
+# VARIABLE: User information dictionary&lt;br&gt;
+user_data = {&lt;br&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;"username": current_user.username,&lt;br&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;"email": current_user.email,&lt;br&gt;
+}
+            &lt;/div&gt;
+            
+            &lt;h3 style="color: #333; margin: 15px 0 10px 0; font-size: 14px;"&gt;2. LOOP Example (Python for-loop in views.py):&lt;/h3&gt;
+            &lt;div class="code-block"&gt;
+# LOOP: Iterate through topics with index&lt;br&gt;
+processed_topics = []&lt;br&gt;
+for index, topic in enumerate(today_topics, start=1):&lt;br&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;formatted = f"Lesson {index}: {topic.upper()}"&lt;br&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;processed_topics.append(formatted)
+            &lt;/div&gt;
+            
+            &lt;h3 style="color: #333; margin: 15px 0 10px 0; font-size: 14px;"&gt;3. LOOP Example (Django template {% for %} loop):&lt;/h3&gt;
+            &lt;div class="code-block"&gt;
+&lt;!-- LOOP: Django template for-loop syntax --&gt;&lt;br&gt;
+{% for topic in today_topics %}&lt;br&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;{{ forloop.counter }}: {{ topic }}&lt;/li&gt;&lt;br&gt;
+{% endfor %}
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- ========== ADMIN EDIT LINK ========== --&gt;
+        &lt;div class="button-group"&gt;
+            &lt;a href="/admin/profile_app/profile/{{ profile.id }}/change/" class="btn btn-primary"&gt;
+                ✎ Edit Profile in Admin
+            &lt;/a&gt;
+            &lt;a href="/admin/" class="btn btn-secondary"&gt;
+                🏠 Go to Admin Panel
+            &lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
