@@ -7,8 +7,8 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    # Homepage redirect to profile page
-    path('', RedirectView.as_view(url='/profile/', permanent=False)),
+    # Homepage redirect to admin dashboard
+    path('', RedirectView.as_view(url='/admin/', permanent=False)),
     
     # Admin interface
     # Access at: http://localhost:8000/admin/
